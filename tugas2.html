@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TUGAS</title>
+    <link rel="icon" href="images/R.png" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f1f1f1;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: #003fc7;
+            box-shadow: 0 4px 10px rgba(138, 138, 138, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar .logo {
+            font-size: 30px;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+        .navbar a {
+            text-decoration: none;
+            color: #ffffff;
+            padding: 12px 20px;
+            font-size: 18px;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+        .navbar a:hover {
+            color: #ffffff;
+            background-color: #9e9e9e;
+            border-radius: 5px;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: url('images/poster.png') no-repeat center center/cover;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: rgb(0, 0, 0);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Info Bar Style */
+        .info-bar {
+            background: linear-gradient(45deg, #003fc7, #0091ea);
+            color: white;
+            text-align: center;
+            padding: 25px 0;
+            font-size: 1.4rem;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            background-size: 400% 400%;
+            animation: gradientAnimation 6s ease infinite;
+        }
+
+        .info-bar p {
+            position: absolute;
+            white-space: nowrap;
+            animation: scrollTextLeftToRightAndBack 12s ease-in-out infinite;
+            margin: 0;
+            padding: 0 20px;
+            font-family: 'Poppins', sans-serif;
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
+            color: #f0f0f0;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .info-bar p:hover {
+            color: #ffcc00;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes scrollTextLeftToRightAndBack {
+            0% {
+                transform: translateX(-100%);
+            }
+            25% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(100%);
+            }
+            75% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .info-bar {
+                font-size: 1.1rem;
+            }
+
+            .info-bar p {
+                font-size: 1.3rem;
+            }
+        }
+
+        .judul {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            color: #000000;
+        }
+
+        /* Content Section */
+        .content-section {
+            padding: 60px 20px;
+            background: #ffffff;
+        }
+
+        .content-box {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        .content-box h2 {
+            font-size: 2.5rem;
+            color: #000000;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .content-box p {
+            font-size: 1.2rem;
+            color: #000000;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .content-box p1{
+            font-size: 1.2rem;
+            color: #000000;
+            font-weight: bold;
+        }
+        .content-box img {
+        display: block ; /*mengubah gambar menjadi elemen blok*/
+        margin: 0 auto; /* Memusatkan gambar secara horizontal */
+        max-width: 500px; /* Memastikan gambar tidak melebihi lebar kontainer */
+        height: auto; /* Mempertahankan proporsi gambar */
+        }
+        /* Address, Maps, and Social Media Bar at Bottom */
+        .address-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.575);
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .address-bar h4 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .address-bar p, .address-bar a {
+            font-size: 0.9rem;
+        }
+
+        .address-bar a {
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            margin-right: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .address-bar a:hover {
+            color: #0800ff;
+        }
+
+        .address, .maps, .social-media {
+            flex: 1;
+        }
+
+        .social-media {
+            text-align: right;
+        }
+
+        @media (max-width: 768px) {
+            .address-bar {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .address, .maps, .social-media {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: #f5f5f5;
+            color: rgb(0, 0, 0);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+        }
+        footer p {
+            font-size: 1rem;
+        }
+
+        /* Scrollbar Styles */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #3F51B5;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #303F9F;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">RANGGA DWI SAPUTRA</div>
+        <div>
+            <a href="index.html"><i class="fas fa-book"></i> Home</a>
+            <a href="gallery.html"><i class="fas fa-images"></i> Gallery</a>
+            <a href="background.html"><i class="fas fa-user-circle"></i> My Background</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div></div>
+    </div>
+
+    <!-- Info Bar after Hero Section -->
+    <div class="info-bar">
+        <p>WELCOME TO MY BLOG</p>
+    </div>
+
+    <div class="judul">
+        <p>TUGAS</p>
+    </div>
+
+    <!-- Content Section -->
+    <div class="content-section">
+        <div class="content-box">
+            <h2>Pengertian Lan,Man, Dan Wan</h2>
+            <img src="images/lan.png" alt="Gambar Artikel 1" class="article-image">
+            <P1>1.Local Area Network (LAN)</P1>
+            <p>Local Area Network (LAN) adalah suatu jaringan komputer yang hanya mencakup wilayah lokal saja. Artinya, jaringan ini hanya dapat digunakan oleh pengguna di area LAN. LAN menghubungkan perangkat ke jaringan internet melalui perangkat jaringan sederhana.
+                Dalam jaringan LAN biasanya ditemukan kabel UTP, Hub, Switch, maupun Router. Contoh dari jaringan ini adalah komputer-komputer di sekolah, perusahaan, atau warung internet. Jaringan pada area yang terbatas tersebut biasanya merupakan jaringan LAN.
+                Sebagai jaringan dengan area lokal, LAN mempunyai beberapa karakteristik yang mudah untuk diidentifikasi. Berikut adalah beberapa di antaranya:
+                1. Tidak menggunakan jaringan telekomunikasi dari operator tambahan.
+                2. Jaringan LAN biasanya digunakan untuk kepentingan pribadi.
+                3. Administrasi pada jaringan LAN dilakukan melalui administrasi lokal.
+                4. Di dalam jaringan LAN biasanya terdapat satu komputer yang berfungsi sebagai server yang bertugas untuk mengatur sistem agar berjalan normal.  </p>
+            <p1>Fungsi LAN</p1>
+            <p> 1. Menghubungkan 2 Komputer atau Lebih.
+                2. Memindahkan File dari Satu Komputer ke Komputer Lainnya.
+                3. Sharing Printer.
+                4. LAN Chatting.
+                5. Remote Komputer.
+            </p>
+            <p1>Kekurangan dan Kelebihan LAN</p1>
+            <p>LAN hanya mencakup area yang kecil. Dengan cakupannya ini, tentu LAN mempunyai kelebihan dan kekurangan tersendiri. Berikut adalah kelebihan dan kekurangan dari LAN.</p>
+               <P1>Kelebihan LAN</P1>
+               <P>1. Karena jangkauannya yang hanya mencakup area kecil, LAN tidak akan menguras terlalu banyak biaya. Selain itu, kabel yang digunakan pun tidak terlalu panjang. Ini akan lebih menghemat biaya.
+               2. Melalui LAN, koneksi transfer data antar node akan berlangsung dengan cepat.
+                3. Jaringan LAN tidak membutuhkan operator telekomunikasi untuk dapat membuat jaringan.</P>
+                <P1>Kekurangan LAN</P1>
+                <P>Luas wilayah koneksi terbatas. Hal ini karena LAN hanya mencakup area lokal saja.</P>
+                <img src="images/man.PNG" alt="Gambar Artikel 1" class="article-image">
+                <P1>Metropolitan Area Network (MAN)</P1>
+                <p>Metropolitan Area Network (MAN) adalah suatu jaringan komputer yang dapat mencakup area yang lebih luas dan menggunakan teknologi yang lebih canggih dari LAN. Jaringan MAN merupakan gabungan beberapa jaringan LAN yang mana menjangkau hingga 10 s.d. 50 km.
+                    Jaringan MAN cocok dipakai untuk membangun jaringan antar perkantoran atau instansi yang masih dalam satu kota. Biasanya MAN dipakai untuk menghubungkan beberapa lokasi seperti perkantoran, kampus, pemerintahan, dan sebagainya.
+                    MAN digunakan karena kecepatan transfer data yang dinilai tinggi dan proses instalasi yang tidak terlalu rumit. Di dalam MAN, dibutuhkan operator telekomunikasi yang akan menjadi penghubung antar jaringan komputer.
+                    MAN sendiri mempunyai karakteristik sebagai berikut:
+                    1. Meliputi area yang lebih luas dari LAN, yakni 10 sampai 50 km.
+                    2. Sebuah MAN umumnya tidak dimiliki oleh satu organisasi. MAN umumnya dimiliki oleh salah satu konsorsium pengguna atau oleh penyedia layanan jaringan yang menyediakan pelayanan kepada pengguna.
+                    3. MAN bertindak sebagai jaringan berkecepatan tinggi sehingga memungkinkan untuk berbagi sumber daya daerah. Hal ini pun sering digunakan untuk menyediakan koneksi bersama.
+                    4. Sekalipun MAN lebih besar dari LAN, teknologi yang dipakai biasanya sama dengan LAN.
+                    5. MAN hanya memiliki sebuah atau dua buah kabel dan tidak memiliki elemen switching yang berfungsi untuk mengatur paket melalui beberapa output</p>
+                <P1>Fungsi MAN</P1>
+                <P>Jaringan MAN mempunyai fungsi untuk memenuhi kebutuhan internet pada sebuah perusahaan. MAN akan mempermudah pembagian dan penerimaan data maupun informasi. Terlebih lagi pemusatan data pada MAN akan lebih mudah dilakukan.
+                    Melalui jaringan MAN, sebuah perusahaan dapat melakukan kegiatan bertukar informasi baik melalui Video Conference, Email, maupun chat yang dilakukan secara real time dengan memakai bandwith lokal.</P>
+                <p1>Kelebihan dan Kekurangan MAN</p1>
+                <p>Jaringan man mempunyai plus minus tersendiri. Berlkut ini adalah kelebihan dan kekurangan jaringan Metropolitan Area Network atau MAN.</p>
+                <p1>Kelebihan MAN</p1>
+                <p>1. MAN mempunyai area jangkauan yang lebih luas dibandingkan LAN. Hal ini karena MAN dapat mencakup lingkup satu kota. Hal ini membuat komunikasi dengan jaringan MAN menjadi lebih efisien.
+                    2. Jaringan MAN dipakai untuk mempermudah urusan bisnis. Keamanan berkomunikasi dengan jaringan MAN pun juga dinilai lebih terjaga.
+                    3. Memiliki kecepatan transfer data yang tinggi.</p>
+                    <P1>Kekurangan MAN</P1>
+                    <p>1. Jaringan MAN sangat mungkin untuk sirsak oleh orang yang tidak bertanggung jawab demi keuntungan pribadi atau tujuan lainnya.
+                        2. Apabila terjadi kerusakan pada jaringan MAN, waktu yang diperlukan untuk memperbaikinya akan cukup lama. </p>
+                        <img src="images/wan.png" alt="Gambar Artikel 1" class="article-image">
+                        <p1>3. Wide Area Network</p1>
+                        <p>Wide Area Network (WAN) adalah jaringan komputer yang luas cakupannya dapat mencapai satu negara bahkan benua. Jaringan ini merupakan gabungan dari LAN dan MAN yang wilayahnya dipisahkan secara geografis.
+
+                            Membangun jaringan WAN membutuhkan kabel serat optik (fiber optic), kabel telepon, atau bisa juga menggunakan satelit. Oleh karena jangkauannya yang luas, membuat WAN memerlukan biaya yang sangat besar.
+                            
+                            WAN mempunyai transmisi kecepatan mulai dari 2 Mbps, 34 Mbps, 45 Mbps, 155 Mbps, 625 Mbps atau bahkan lebih. Faktor yang menjadi pengaruh design dan performa jaringan ini ada pada siklus komunikasi semacam jaringan telepon atau satelit.
+                            
+                            Jaringan WAN mempunyai karakteristik tersendiri, yaitu sebagai berikut:
+                            
+                            1. Umumnya digunakan untuk menghubungkan perangkat-perangkat yang tidak dapat dihubungkan melalui jaringan LAN maupun MAN. Hal ini membuat WAN dapat digunakan secara luas.
+                            2.  Area jangkauan WAN sangat luas. Oleh karena itu, biasanya dalam WAN akan melibatkan operator telekomunikasi. Tujuannya adalah agar perangkat-perangkat dalam jaringan WAN dapat melakukan komunikasi satu sama lain.
+                            3. Jaringan WAN dapat melakukan pertukaran paket data atau frame antar router atau switch dan jaringan LAN yang sudah dibangun.
+                            4. Jaringan WAN ini bekerja pada layer fisik dan pada layer data link dari layer OSI.</p>
+                        <p1>Fungsi WAN</p1>
+                        <P>1. Membuat Arus Komunikasi Menjadi Lebih Mudah dan Cepat
+                            2. Mengintegrasikan Jaringan Lan dan Man
+                            3. Menghemat Biaya Operasional
+                            4. Pengiriman Data yang Cepat
+                            5. Terhindar Dari Miskomunikasi
+                        </P>
+                        <P1>Kelebihan dan Kekurangan WAN</P1>
+                        <p>Sebagai jaringan komputer dengan skala luas, tentu WAN tidak lepas dari kelebihan dan kekurangan. Berikut dijelaskan kelebihan dan kekurangan WAN secara umum</p>
+                         <P1>Kelebihan WAN</P1> 
+                         <P>1. WAN memungkinkan pengguna untuk berbagi informasi atau file melalui area yang lebih besar, hingga mencapai antar benua.
+                            2. Semua orang yang terdapat pada jaringan WAN akan dapat menggunakan data yang sama.
+                            3. WAN mempunyai sistem jaringan yang luas dan besar sehingga mampu menjangkau negara, benua, bahkan seluruh dunia.
+                            4. Dengan memanfaatkan koneksi workstations, jaringan WAN dapat digunakan untuk berbagi resources atau sumber daya.</P>
+                        <p1>Kekurangan WAN</p1>
+                        <p>1. Karena jangkauannya yang sangat luas, sangat wajar jika WAN membutuhkan biaya operasional yang sangat tidak sedikit.
+                            2. Dari segi pengaturan atau penyetingan, jaringan WAN lebih sulit dan rumit. Alat-alat yang diperlukan untuk membangun jaringan ini juga tidak murah.
+                            3. Jaringan WAN membutuhkan keberadaan Firewall demi membatasi pengguna ilegal yang masuk. Selain itu, langkah ini juga bertujuan untuk membatasi user yang ingin mengganggu jaringan.
+                            4. Skala jangkauan jaringan WAN yang luas membuat jaringan ini rentan terhadap serangan dan ancaman dari dunia luar seperti hacker.</p>
+                            <p> SUMBER:</p>
+                <a href=https://www.dataglobal.co.id/pengertian-lan-man-wan-beserta-fungsi-kelebihan-kekurangannya/ target="_blank">dataglobal.co.id</a>
+            </div>
+    </div>
+
+
+ <!-- Address, Maps, and Social Media Bar at Bottom -->
+ <div class="address-bar">
+    <div class="address">
+        <h4><i class="fas fa-home"></i> Alamat Rumah</h4>
+        <p>Jl. RowoBening, Pekanbaru, Riau-Indonesia</p>
+        <h4><i class="fas fa-university"></i> Alamat Kampus</h4>
+        <p>Jl.Purwodadi Indah No.KM. 10, Sidomulyo Bar., Kec. Tampan, Kota Pekanbaru, Riau 28294</p>
+    </div>
+    <div class="maps">
+        <h4><i class="fas fa-map-marker-alt"></i> Lokasi</h4>
+        <a href="https://www.google.com/maps/place/CATERING+BU+ROSE/@0.4308274,101.4171662,21z/data=!4m6!3m5!1s0x31d5a70002d248b3:0x9c8715bdad78c76f!8m2!3d0.430842!4d101.4172948!16s%2Fg%2F11wwm_jk94?entry=ttu&g_ep=EgoyMDI1MDEwOC4wIKXMDSoASAFQAw%3D%3D"
+            target="_self" class="map-link">
+            <i class="fas fa-home"></i> Lihat di Google Maps RUMAH
+        </a>
+        <a href="https://www.google.com/maps/place/USTI+Pekanbaru/@0.448186,101.3957562,17z/data=!3m1!4b1!4m6!3m5!1s0x31d5a91147214257:0x38bf6247b6b4b787!8m2!3d0.448186!4d101.3983311!16s%2Fg%2F11jnnjrf97?entry=ttu&g_ep=EgoyMDI1MDExMC4wIKXMDSoJLDEwMjExMjMzSAFQAw%3D%3D"
+            target="_self" class="map-link">
+            <i class="fas fa-university"></i> Lihat di Google Maps KAMPUS
+        </a>
+    </div>
+    
+    <div class="social-media">
+        <h4><i class="fab fa-instagram"></i> Media Sosial</h4>
+        <a href="https://www.instagram.com/ranggads____/" target="_blank" class="icon">
+            <i class="fab fa-instagram"></i>
+            <span>Instagram</span>
+        </a> 
+        <a href="https://www.facebook.com/profile.php?id=61571688076964" target="_blank" class="icon">
+            <i class="fab fa-facebook-f"></i>
+            <span>Facebook</span>
+        </a>
+        <a href="https://www.youtube.com/channel/UCZ1jjgnq_NYXt4oH3I2bBiw" target="_blank" class="icon">
+            <i class="fab fa-youtube"></i>
+            <span>YouTube</span>
+        </a>
+        <a href="https://x.com/@RanggaDs107" target="_blank" class="icon">
+            <i class="fab fa-x"></i>
+            <span>Twitter</span>
+        </a>
+        <a href="https://www.tiktok.com/@band1t107" target="_blank" class="icon">
+            <i class="fab fa-tiktok"></i> <!-- Ikon TikTok -->
+            <span>TikTok</span>
+        </a>
+    </div>
+</div>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Rangga Dwi Saputra. Semua Hak Dilindungi.</p>
+    </footer>
+</body>
+</html>

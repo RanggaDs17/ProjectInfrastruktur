@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BERITA</title>
+    <link rel="icon" href="images/R.png" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f1f1f1;
+            color: #000000;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background-color: #003fc7;
+            box-shadow: 0 4px 10px rgba(138, 138, 138, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar .logo {
+            font-size: 30px;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+        .navbar a {
+            text-decoration: none;
+            color: #ffffff;
+            padding: 12px 20px;
+            font-size: 18px;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+        .navbar a:hover {
+            color: #ffffff;
+            background-color: #9e9e9e;
+            border-radius: 5px;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: url('images/poster.png') no-repeat center center/cover;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: rgb(0, 0, 0);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Info Bar Style */
+        .info-bar {
+            background: linear-gradient(45deg, #003fc7, #0091ea);
+            color: white;
+            text-align: center;
+            padding: 25px 0;
+            font-size: 1.4rem;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            background-size: 400% 400%;
+            animation: gradientAnimation 6s ease infinite;
+        }
+
+        .info-bar p {
+            position: absolute;
+            white-space: nowrap;
+            animation: scrollTextLeftToRightAndBack 12s ease-in-out infinite;
+            margin: 0;
+            padding: 0 20px;
+            font-family: 'Poppins', sans-serif;
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6);
+            color: #f0f0f0;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .info-bar p:hover {
+            color: #ffcc00;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes scrollTextLeftToRightAndBack {
+            0% {
+                transform: translateX(-100%);
+            }
+            25% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(100%);
+            }
+            75% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .info-bar {
+                font-size: 1.1rem;
+            }
+
+            .info-bar p {
+                font-size: 1.3rem;
+            }
+        }
+        .judul {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            color: #000000;
+        }
+
+        /* Content Section */
+        .content-section {
+            padding: 60px 20px;
+            background: #ffffff;
+        }
+
+        .content-box {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        .content-box h2 {
+            font-size: 2.5rem;
+            color: #000000;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .content-box p {
+            font-size: 1.2rem;
+            color: #000000;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .content-section p1{
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #000000;
+        }
+        .content-section p2{
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #000000;
+        }
+        .content-box img {
+        display: block ; /*mengubah gambar menjadi elemen blok*/
+        margin: 0 auto; /* Memusatkan gambar secara horizontal */
+        max-width: 1000px; /* Memastikan gambar tidak melebihi lebar kontainer */
+        height: auto; /* Mempertahankan proporsi gambar */
+        }
+
+        /* Address, Maps, and Social Media Bar at Bottom */
+        .address-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.575);
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .address-bar h4 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .address-bar p, .address-bar a {
+            font-size: 0.9rem;
+        }
+
+        .address-bar a {
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            margin-right: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .address-bar a:hover {
+            color: #0800ff;
+        }
+
+        .address, .maps, .social-media {
+            flex: 1;
+        }
+
+        .social-media {
+            text-align: right;
+        }
+
+        @media (max-width: 768px) {
+            .address-bar {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .address, .maps, .social-media {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: #f5f5f5;
+            color: rgb(0, 0, 0);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+        }
+        footer p {
+            font-size: 1rem;
+        }
+
+        /* Scrollbar Styles */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #3F51B5;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #303F9F;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">RANGGA DWI SAPUTRA</div>
+        <div>
+            <a href="index.html"><i class="fas fa-book"></i> Home</a>
+            <a href="gallery.html"><i class="fas fa-images"></i> Gallery</a>
+            <a href="background.html"><i class="fas fa-user-circle"></i> My Background</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div></div>
+    </div>
+
+    <!-- Info Bar after Hero Section -->
+    <div class="info-bar">
+        <p>WELCOME TO MY BLOG</p>
+    </div>
+
+    <div class="judul" > 
+       <p> BERITA </p>
+    </div>
+    
+
+    <!-- Content Section -->
+    <div class="content-section">
+        <div class="content-box">
+            <h2>Luncurkan Katalog Prangko 2025, Menkomdigi: Transformasi Digital Hubungkan Warisan Budaya dan Generasi Mendatang</h2>
+            <img src="images/komdigi2.jpeg" alt="Gambar Artikel 3" class="article-image">
+               <p>Kementerian Komunikasi dan Digital meluncurkan Katalog Prangko 2025, sebuah inovasi yang mengintegrasikan teknologi modern dengan warisan budaya bangsa. Katalog ini menjadi wujud nyata bagaimana teknologi dapat menjadi alat untuk memperkuat nilai-nilai tradisional dengan adaptasi masa kini.
+                “Prangko telah menjadi saksi perjalanan sejarah dan budaya bangsa kita. Melalui inovasi digital seperti Non-Fungible Token (NFT) dan Augmented Reality (AR), prangko kini hadir dengan wajah baru yang tidak hanya estetis, tetapi juga interaktif dan relevan bagi generasi digital,” jelas Menteri Komunikasi dan Digital Meutya Hafid di Kantor Kementerian Komdigi, Jakarta Pusat, Rabu (15/01/2025). Meutya Hafid menyatakan setiap prangko yang diterbitkan dalam katalog ini mengusung cerita unik, mulai dari kekayaan flora dan fauna, seni tradisional, hingga perayaan budaya lokal. Dengan demikian, prangko tidak hanya menjadi alat pembayaran atau benda koleksi, tetapi juga simbol identitas bangsa yang terus berkembang. “Inisiatif ini menegaskan bahwa transformasi digital adalah peluang besar untuk menjaga relevansi budaya Indonesia,” tegasnya. Melalui desain-desain inovatif yang terhubung dengan teknologi, masyarakat dapat mengeksplorasi nilai-nilai budaya Indonesia dengan cara baru. Misalnya, teknologi AR memungkinkan pengguna untuk melihat animasi cerita di balik prangko, sementara prangko berbasis NFT membuka peluang baru dalam koleksi digital di tingkat global. “Kami ingin masyarakat, terutama generasi muda, memahami bahwa teknologi bukan ancaman bagi budaya, melainkan sarana untuk menjaga dan memperkuatnya. Melalui inovasi ini, kita tidak hanya menjaga sejarah, tetapi juga menciptakan sejarah baru yang relevan bagi masa depan,” tutur Meutya Hafid. Kementerian Komdigi mengajak seluruh masyarakat Indonesia untuk mendukung upaya ini. Dengan kerja sama dari berbagai pihak, termasuk institusi pendidikan, komunitas filateli, dan penggiat teknologi, prangko dapat terus menjadi simbol kebanggaan bangsa. “Prangko digital adalah jembatan antara masa lalu dan masa depan, antara tradisi dan inovasi. Mari kita jadikan prangko sebagai medium untuk memperkenalkan kekayaan budaya Indonesia kepada dunia, sekaligus menciptakan warisan baru yang dapat kita banggakan bersama,” ungkap Menkomdigi Meutya Hafid.</p>
+            <p1>Tema dan Desain dalam Katalog Prangko 2025</p1>
+               <p>Katalog Prangko 2025 menghadirkan berbagai seri prangko yang menggambarkan kekayaan budaya, sejarah, dan pencapaian bangsa, antara lain:</p>
+
+                <p2>1.ASTROLOGI</p2>
+                <p>Dalam Katalog e-Prangko 2025, terdapat varian Astrologi Tiongkok Tahun 2025 sebagai tahun Ular Kayu, yang dimulai pada 29 Januari 2025 dan berakhir pada 16 Februari 2026. Tahun Ular Kayu membawa energi pertumbuhan, inovasi, dan stabilitas, serta diprediksi akan membawa keberuntungan bagi beberapa shio.</p>
+                <p2>2.HUBUNGAN DIPLOMATIK INDONESIA - RUSIA</p2>
+                <p>Varian hubungan diplomatik Indonesia-Rusia menjadi terbitan prangko bersama Peringatan 75 Tahun Hubungan Diplomatik Indonesia-Rusia sebagai upaya mempererat hubungan diplomatik kedua negara. Sebagaimana dibahas dalam pertemuan Presiden Republik Indonesia Prabowo Subianto dengan Presiden Federasi Rusia Vladimir Putin di Moscow, Rusia pada 31 Juli 2024 lalu.</p>
+                <p2>3.HUBUNGAN DIPLOMATIK INDONESIA - TIONGKOK
+                </p2>
+                <p>Varian hubungan diplomatik Indonesia-Tiongkok akan diperingati pada 13 April 2025 sebagai Peringatan 75 Tahun Hubungan Bilateral Indonesia-Tiongkok. RRT merupakan mitra strategis Indonesia dan pada tahun 2013 kedua negara telah menyepakati penguatan kerjasama di berbagai bidang melalui Kemitraan Strategis Komprehensif. Selama lebih dari 10 tahun, kemitraan tersebut telah menghasilkan kesepakatan kerjasama antara lain pada bidang infrastruktur, perdagangan, dan kesehatan.</p>
+                <p2>4.HOROSKOP</p2>
+                <p>Varian Horoskop akan menampilkan 12 desain gambar horoskop berbentuk origami. Horoskop sendiri dalam astrologi merupakan sebuah bagan yang menggambarkan posisi matahari, bulan, planet-planet, aspek-aspek astrologis, dan sudut-sudut sensitif pada saat kelahiran seorang anak. Kata horoskop berasal dari bahasa Yunani, horoskopos (jamak: horoskopoi) yang berarti "mengamati", "memeriksa waktu", jam, atau "tanda (tanda-tanda) jam".</p>
+                <p2>5.PAMERAN PRANGKO INTERNASIONAL DAN KOMPETISI (FIVE NATIONS)</p2>
+                <p>Indonesia International Stamp Exhibition and Competition 2025 (Five Nations + International Participants) akan diselenggarakan pada tanggal 28 Mei-1 Juni 2025 di Kota Bandung, Jawa Barat.</p>
+                <p2>6.KEBUDAYAAN</p2>
+                <p>Varian kebudayaan dengan beberapa tradisi dari sejumlah daerah di Indonesia, seperti dari Trenggalek, Jawa Timur, Lombok, Nusa Tenggara Barat (NTB), Papua, Palembang, dsb.</p>
+                <p2>7.PAMERAN FILATELI FIAP THAILAND</p2>
+                <p>Thailand 2025 (Asian International Stamp Exhibition akan diselenggarakan di Bangkok, Thailand pada tanggal 8-12 Agustus 2024. Kegiatan ini dilaksanakan atas lisesnsi dari Federation of Inter-Asian Philately (FIAP).</p>
+                <p2>8.PRESIDEN DAN WAKIL PRESIDEN REPUBLIK INDONESIA</p2>
+                <p>Presiden dan Wakil Presiden Republik Indonesia periode 2024-2029, Prabowo Subianto - Gibran Rakabuming Raka. Keduanya dilantik pada tanggal 20 Oktober 2024 dalam SIdang Paripurna Majelis Permusyawaratan Rakyat (MPR).</p>
+                <p2>9.HUBUNGAN DIPLOMATIK INDONESIA-SERBIA</p2>
+                <P>Hubungan Diplomatik Indonesia-Serbia akan diterbitkan bersama oleh kedua negara. Kedua negara juga akan menerbitkan prangko khusus Peringatan 80 Tahun Hari Kemerdekaan Indonesia.</P>
+                <p2>10.OLAHRAGA (PIALA DUNIA U-20)</p2>
+                <p>Piala Dunia U-20 FIFA, atau sebelum 2005 disebut Piala Dunia Pemuda FIFA, yang diselenggarakan setiap dua tahun sekali. Kejuaraan ini diikuti oleh setiap negara dengan mengirimkan tim nasional sepak bola di kelompok umur di bawah 20 tahun</p>
+                <p2>11.PAMERAN FILATELI FIP PHILAKOREA</p2>
+                <p>PHILAKOREA 2025 (FIP World Stamp Exhibition) akan diselenggarakan di COEX Le West Convention Center di Seoul, Korea Selatan pada tanggal 17-21 September 2025. Kegiatan ini dilaksanakan atas lisensi dari Federation Internationale de Philatelie (FIP).</p>
+                <p2>12.HUBUNGAN DIPLOMATIK INDONESIA - BOSNIA HERZEGOVINA</p2>
+                <p>Prangko peringatan hubungan diplomatik Indonesia-Bosnia Herzegovina memiliki desain Masjid Istiklal Sarajevo dan Masjid Istiqlal Jakarta. Desain prangko ini dipilih untuk memperingati 25 Tahun Masjid Istiklal Sarajevo yang mulai dibangun pada tahun 2001.</p>
+                <p2>13.75 TAHUN INDONESIA MENJADI ANGGOTA PBB</p2>
+                <p>Pemerintah akan menerbitkan prangko seri 75 Tahun Indonesia menjadi anggota Perserikatan Bangsa-Bangsa (PBB). Indonesia sendiri bergabung dengan PBB pada tanggal 28 September 1950 dan diakui sebagai negara anggota ke-60 PBB. Saat pemilihan suara untuk masuk dan dengan hasil yang disepakati, Indonesia menjadi anggota PBB, 5 tahun setelah Proklamasi Kemerdekaan Indonesia pada tahun 1945.</p>
+                <p2>14.PAKAIAN NASIONAL : KEBAYA</p2>
+                <p>Kebaya resmi masuk Daftar Representatif Warisan Budaya Takbenda Kemanusiaan UNESCO pada sidang the Intergovernmental Committee for the Safeguarding of the Intangible Cultural Heritage, UNESCO ke-19 tahun 2024 di Paraguay. Kebaya diusulkan dalam skema Joint Nomination di mana pakaian kaum perempuan tersebut diusulkan secara bersama-sama oleh 5 negara, yakni Indonesia, Brunei Darussalam, Malaysia, Singapura, dan Thailand.</p>
+                <p2>15.HARI CINTA PUSPA DAN SATWA NASIONAL</p2>
+                <p>Hari Cinta Puspa dan Satwa Nasional (HCPSN) yang diperingati setiap tanggal 5 November. Peringatan ini ditetapkan berdasarkan Keppres Nomor 4 Tahun 1993 oleh Presiden Soeharto. Tujuan peringatan ini untuk meningkatkan kesadaran masyarakat tentang pentingnya melestarikan flora dan fauna di Indonesia.</p>
+                <p2>16.TELEKOMUNIKASI</p2>
+                <p>Desain Satelit AR dan Daerah 3T. Satelit AR menggunakan teknologi terbaru High Throughput Satelite (HTS) sehingga dapat menghasilkan kapasitas setara 150 Gbps dan dirancang untuk memberikan layanan internet broadband berkecepatan tinggi hingga di seluruh Indonesia. Daerah 3T merupakan daerah yang tergolong dalam daerah tertinggal, terdepan dan terluar. Tertinggal berarti memiliki kualitas pembangunan yang rendah. Lalu dari sisi geografis berada di daerah terdepan dan terluar wilayah Indonesia.</p>
+                <p>SUMBER:</p>
+                <a href= https://www.komdigi.go.id/berita/siaran-pers/detail/luncurkan-katalog-prangko-2025-menkomdigi-transformasi-digital-hubungkan-warisan-budaya-dan-generasi-mendatang target="_blank">komdigi.co.id</a>
+            </div>
+    </div>
+
+
+ <!-- Address, Maps, and Social Media Bar at Bottom -->
+ <div class="address-bar">
+    <div class="address">
+        <h4><i class="fas fa-home"></i> Alamat Rumah</h4>
+        <p>Jl. RowoBening, Pekanbaru, Riau-Indonesia</p>
+        <h4><i class="fas fa-university"></i> Alamat Kampus</h4>
+        <p>Jl.Purwodadi Indah No.KM. 10, Sidomulyo Bar., Kec. Tampan, Kota Pekanbaru, Riau 28294</p>
+    </div>
+    <div class="maps">
+        <h4><i class="fas fa-map-marker-alt"></i> Lokasi</h4>
+        <a href="https://www.google.com/maps/place/CATERING+BU+ROSE/@0.4308274,101.4171662,21z/data=!4m6!3m5!1s0x31d5a70002d248b3:0x9c8715bdad78c76f!8m2!3d0.430842!4d101.4172948!16s%2Fg%2F11wwm_jk94?entry=ttu&g_ep=EgoyMDI1MDEwOC4wIKXMDSoASAFQAw%3D%3D"
+            target="_self" class="map-link">
+            <i class="fas fa-home"></i> Lihat di Google Maps RUMAH
+        </a>
+        <a href="https://www.google.com/maps/place/USTI+Pekanbaru/@0.448186,101.3957562,17z/data=!3m1!4b1!4m6!3m5!1s0x31d5a91147214257:0x38bf6247b6b4b787!8m2!3d0.448186!4d101.3983311!16s%2Fg%2F11jnnjrf97?entry=ttu&g_ep=EgoyMDI1MDExMC4wIKXMDSoJLDEwMjExMjMzSAFQAw%3D%3D"
+            target="_self" class="map-link">
+            <i class="fas fa-university"></i> Lihat di Google Maps KAMPUS
+        </a>
+    </div>
+    
+    <div class="social-media">
+        <h4><i class="fab fa-instagram"></i> Media Sosial</h4>
+        <a href="https://www.instagram.com/ranggads____/" target="_blank" class="icon">
+            <i class="fab fa-instagram"></i>
+            <span>Instagram</span>
+        </a> 
+        <a href="https://www.facebook.com/profile.php?id=61571688076964" target="_blank" class="icon">
+            <i class="fab fa-facebook-f"></i>
+            <span>Facebook</span>
+        </a>
+        <a href="https://www.youtube.com/channel/UCZ1jjgnq_NYXt4oH3I2bBiw" target="_blank" class="icon">
+            <i class="fab fa-youtube"></i>
+            <span>YouTube</span>
+        </a>
+        <a href="https://x.com/@RanggaDs107" target="_blank" class="icon">
+            <i class="fab fa-x"></i>
+            <span>Twitter</span>
+        </a>
+        <a href="https://www.tiktok.com/@band1t107" target="_blank" class="icon">
+            <i class="fab fa-tiktok"></i> <!-- Ikon TikTok -->
+            <span>TikTok</span>
+        </a>
+    </div>
+</div>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Rangga Dwi Saputra. Semua Hak Dilindungi.</p>
+    </footer>
+</body>
+</html>
